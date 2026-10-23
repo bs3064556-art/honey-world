@@ -17,6 +17,8 @@ export const BirthdayVideo: React.FC = () => {
   const [started, setStarted] = useState(false);
   const [failed, setFailed] = useState<Set<number>>(() => new Set());
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const wantPlay = useRef(false);
+  const blockPauseUntil = useRef(0);
   const touchX = useRef<number | null>(null);
 
   const total = REEL_PHOTOS.length;
@@ -29,25 +31,57 @@ export const BirthdayVideo: React.FC = () => {
     setIndex(((n % total) + total) % total);
   }, [total]);
 
-  // video-only: Love Me Like You Do
-  useEffect(() => {
-    const audio = new Audio(VIDEO_SONG.url);
-    audio.loop = true;
-    audio.preload = 'auto';
-    audio.volume = 0.85;
-    audioRef.current = audio;
-    return () => {
-      audio.pause();
-      audioRef.current = null;
-      duckMusic(false);
+  const resumeSong = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio || !wantPlay.current) return;
+    duckMusic(true);
+    const start = () => {
+      if (!wantPlay.current) return;
+      void audio.play().catch(() => {
+        if (!wantPlay.current) return;
+        if (audio.error) audio.load();
+        if (audio.readyState >= 2) {
+          void audio.play().catch(() => {});
+          return;
+        }
+        audio.addEventListener('canplay', () => {
+          if (wantPlay.current) void audio.play().catch(() => {});
+        }, { once: true });
+      });
     };
+    start();
   }, []);
 
+  // If the browser pauses the song on its own, start it again.
+  // A real pause clears wantPlay first, so it will not bounce back.
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    let lastRetry = 0;
+    const onPause = () => {
+      if (!wantPlay.current) return;
+      const now = Date.now();
+      if (now - lastRetry < 500) return;
+      lastRetry = now;
+      resumeSong();
+    };
+    audio.addEventListener('pause', onPause);
+    return () => {
+      wantPlay.current = false;
+      audio.removeEventListener('pause', onPause);
+      audio.pause();
+      duckMusic(false);
+    };
+  }, [resumeSong]);
+
   const startVideo = () => {
+    // The Play button is replaced by Pause under the same finger.
+    // Ignore that follow-up tap so the song does not stop immediately.
+    blockPauseUntil.current = Date.now() + 800;
+    wantPlay.current = true;
     setStarted(true);
     setPlaying(true);
-    duckMusic(true);
-    void audioRef.current?.play().catch(() => {});
+    resumeSong();
   };
 
   const togglePlay = () => {
@@ -55,17 +89,23 @@ export const BirthdayVideo: React.FC = () => {
       startVideo();
       return;
     }
-    setPlaying(p => {
-      const next = !p;
-      if (next) {
-        duckMusic(true);
-        void audioRef.current?.play().catch(() => {});
-      } else {
-        audioRef.current?.pause();
-        duckMusic(false);
-      }
-      return next;
-    });
+    if (playing && Date.now() < blockPauseUntil.current) return;
+    if (playing) {
+      wantPlay.current = false;
+      audioRef.current?.pause();
+      duckMusic(false);
+      setPlaying(false);
+      return;
+    }
+    wantPlay.current = true;
+    setPlaying(true);
+    resumeSong();
+  };
+
+  const step = (dir: number) => {
+    go(index + dir);
+    // Right/left arrows keep the song going if the browser had paused it.
+    if (wantPlay.current) resumeSong();
   };
 
   // advance frames; on last frame → stop video song, resume main song-3
@@ -73,6 +113,7 @@ export const BirthdayVideo: React.FC = () => {
     if (!playing || !started) return;
     const t = window.setTimeout(() => {
       if (index >= total - 1) {
+        wantPlay.current = false;
         setPlaying(false);
         const a = audioRef.current;
         if (a) {
@@ -102,12 +143,13 @@ export const BirthdayVideo: React.FC = () => {
     const dx = e.changedTouches[0].clientX - touchX.current;
     touchX.current = null;
     if (Math.abs(dx) < 40) return;
-    if (dx < 0) go(index + 1);
-    else go(index - 1);
+    if (dx < 0) step(1);
+    else step(-1);
   };
 
   return (
     <div className="bday-video">
+      <audio ref={audioRef} className="bv-audio" src={VIDEO_SONG.url} loop preload="auto" />
       {/* floating balloons */}
       <div className="bv-balloons" aria-hidden="true">
         {['#FF8FB1', '#FFF0B5', '#D8C9F5', '#C9DDC1', '#FFB7C5'].map((c, i) => (
@@ -185,11 +227,11 @@ export const BirthdayVideo: React.FC = () => {
         </motion.button>
       ) : (
         <div className="bv-controls">
-          <button type="button" className="bv-ctl" onClick={() => go(index - 1)} aria-label="Previous">◀</button>
+          <button type="button" className="bv-ctl" onClick={() => step(-1)} aria-label="Previous">◀</button>
           <button type="button" className="bv-ctl bv-ctl-main" onClick={togglePlay} aria-label={playing ? 'Pause' : 'Play'}>
             {playing ? '⏸' : '▶'}
           </button>
-          <button type="button" className="bv-ctl" onClick={() => go(index + 1)} aria-label="Next">▶</button>
+          <button type="button" className="bv-ctl" onClick={() => step(1)} aria-label="Next">▶</button>
         </div>
       )}
 

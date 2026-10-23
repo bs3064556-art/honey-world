@@ -266,6 +266,14 @@
   border-radius: 5px;
 }
 
+.bv-audio {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .bv-start {
   margin-top: 4px;
   font-size: 1rem;
