@@ -111,7 +111,6 @@ function playBirthdayTune(): Promise<void> {
   });
 }
 
-let speaking = false;
 let resumeTimer: number | null = null;
 
 function stopResumeHack() {
@@ -142,17 +141,14 @@ export async function speakBirthday(name: string): Promise<boolean> {
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
   }
-  speaking = false;
   stopResumeHack();
 
   duckMusic(true);
-  speaking = true;
 
   // 1) musical Happy Birthday (always works with a user gesture)
   await playBirthdayTune();
 
   if (!('speechSynthesis' in window)) {
-    speaking = false;
     duckMusic(false);
     return true;
   }
@@ -191,7 +187,6 @@ export async function speakBirthday(name: string): Promise<boolean> {
 
   return new Promise<boolean>(resolve => {
     const finish = () => {
-      speaking = false;
       stopResumeHack();
       duckMusic(false);
       resolve(true);
