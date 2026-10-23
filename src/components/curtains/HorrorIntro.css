@@ -1,0 +1,138 @@
+.horror-intro {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  background: radial-gradient(ellipse at 50% 40%, #1a0a0c 0%, #050203 70%, #000 100%);
+  overflow: hidden;
+}
+
+.horror-intro.is-flicker {
+  background: radial-gradient(ellipse at 50% 40%, #220e12 0%, #080304 70%, #000 100%);
+}
+
+.horror-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: horrorGrain 0.35s steps(2) infinite;
+}
+
+@keyframes horrorGrain {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-2%, 1%); }
+}
+
+.horror-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.horror-orb {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120, 20, 30, 0.45), transparent 70%);
+  filter: blur(8px);
+  pointer-events: none;
+  animation: horrorDrift 6s ease-in-out infinite;
+}
+.o1 { top: 12%; left: 8%; animation-delay: 0s; }
+.o2 { bottom: 18%; right: 10%; width: 160px; height: 160px; animation-delay: 1.2s; }
+.o3 { top: 40%; right: 30%; width: 80px; height: 80px; animation-delay: 2s; background: radial-gradient(circle, rgba(80, 0, 20, 0.5), transparent 70%); }
+
+@keyframes horrorDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50% { transform: translate(12px, -18px) scale(1.15); opacity: 0.85; }
+}
+
+.horror-line {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  max-width: 86vw;
+  text-align: center;
+  font-family: 'Dancing Script', 'Caveat', cursive;
+  font-size: clamp(1.35rem, 5.5vw, 1.85rem);
+  color: rgba(220, 180, 180, 0.9);
+  text-shadow: 0 0 18px rgba(180, 40, 50, 0.55);
+  min-height: 2.4em;
+}
+
+.horror-door {
+  position: relative;
+  z-index: 2;
+  width: min(72vw, 220px);
+  aspect-ratio: 0.72;
+  border: 2px solid rgba(140, 40, 50, 0.7);
+  border-radius: 8px 8px 4px 4px;
+  background:
+    linear-gradient(180deg, rgba(40, 10, 14, 0.95), rgba(18, 4, 6, 0.98)),
+    repeating-linear-gradient(90deg, transparent 0 12px, rgba(80, 20, 25, 0.25) 12px 13px);
+  box-shadow:
+    0 0 40px rgba(120, 0, 20, 0.45),
+    inset 0 0 40px rgba(0, 0, 0, 0.6);
+  color: #e8c4c4;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  animation: horrorPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes horrorPulse {
+  0%, 100% { box-shadow: 0 0 28px rgba(120, 0, 20, 0.4), inset 0 0 40px rgba(0, 0, 0, 0.6); }
+  50% { box-shadow: 0 0 52px rgba(180, 20, 40, 0.65), inset 0 0 40px rgba(0, 0, 0, 0.6); }
+}
+
+.horror-tap-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 12px rgba(255, 100, 120, 0.55));
+  animation: tapBounce 1.2s ease-in-out infinite;
+}
+
+@keyframes tapBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(6px) scale(0.92); }
+}
+
+.horror-door-label {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #c45a5a;
+}
+
+.horror-door-sub {
+  font-family: 'Great Vibes', 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  color: #f0d0d0;
+}
+
+.horror-hint {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(180, 140, 140, 0.55);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .horror-grain, .horror-orb, .horror-door, .horror-door-eye { animation: none; }
+}

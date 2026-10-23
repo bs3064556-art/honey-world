@@ -1,0 +1,88 @@
+/* ============================================================
+   HONEYVERSE — Progress Indicator Styles
+   ============================================================ */
+
+.progress-indicator {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 253, 249, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 197, 213, 0.5);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 24px rgba(232, 111, 152, 0.16);
+  max-width: calc(100vw - 28px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.progress-indicator::-webkit-scrollbar {
+  display: none;
+}
+
+.progress-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  background: rgba(255, 233, 239, 0.5);
+  border: 1px solid rgba(255, 197, 213, 0.3);
+  transition: all 0.3s var(--ease-bounce);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.progress-dot.done {
+  background: linear-gradient(135deg, rgba(201, 221, 193, 0.6), rgba(255, 240, 181, 0.5));
+  border-color: rgba(175, 201, 164, 0.6);
+  color: #388E3C;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.progress-dot.active {
+  background: linear-gradient(135deg, var(--pink-bubble), var(--pink-deep));
+  border-color: var(--pink-deep);
+  color: #ffffff;
+  transform: scale(1.18);
+  box-shadow: 0 0 14px rgba(232, 111, 152, 0.55);
+  font-weight: bold;
+}
+
+.progress-dot.clickable:hover {
+  transform: scale(1.15);
+  border-color: var(--pink-bubble);
+  box-shadow: 0 0 8px rgba(255, 143, 177, 0.4);
+}
+
+@media (max-width: 520px) {
+  .progress-indicator {
+    top: 10px;
+    left: 8px;
+    right: 58px;
+    transform: none;
+    width: auto;
+    max-width: none;
+    justify-content: flex-start;
+    padding: 4px 8px;
+    gap: 3px;
+  }
+  .progress-dot {
+    width: 22px;
+    height: 22px;
+    font-size: 0.7rem;
+  }
+}

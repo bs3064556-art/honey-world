@@ -1,0 +1,40 @@
+.rose-rain {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3; /* above the page content, below the music dock & curtain */
+}
+
+.rose-fall {
+  position: absolute;
+  top: -90px;
+  opacity: 0;
+  animation-name: roseFall;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+
+.rose-sway {
+  display: block;
+  animation: roseSway 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 4px 5px rgba(90, 30, 30, 0.3));
+  user-select: none;
+}
+
+@keyframes roseFall {
+  0%   { opacity: 0; transform: translateY(0); }
+  6%   { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(calc(100vh + 140px)); }
+}
+
+@keyframes roseSway {
+  from { transform: translateX(calc(var(--sway) * -1)) rotate(calc(var(--spin) * -0.25)); }
+  to   { transform: translateX(var(--sway)) rotate(calc(var(--spin) * 0.25)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rose-rain { display: none; }
+}

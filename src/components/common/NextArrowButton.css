@@ -1,0 +1,53 @@
+.next-arrow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 6px 4px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff9db9 0%, #e86f98 55%, #d9567f 100%);
+  color: #fff;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow:
+    0 8px 24px rgba(232, 111, 152, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.next-arrow-btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(232, 111, 152, 0.45);
+}
+
+.next-arrow-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.next-arrow-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.next-arrow-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(4px);
+  animation: nextArrowNudge 1.6s ease-in-out infinite;
+}
+
+@keyframes nextArrowNudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .next-arrow-icon { animation: none; }
+}

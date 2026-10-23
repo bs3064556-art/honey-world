@@ -1,0 +1,81 @@
+/* BirthdayCake.css */
+
+.cake-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: 16px 0;
+}
+
+.cake-balloons {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  width: 36px;
+  height: 44px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  top: 0;
+  animation: gentleFloat 3s ease-in-out infinite;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  width: 1px;
+  height: 14px;
+  background: rgba(91, 58, 72, 0.30);
+}
+
+.cake-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.cake-svg {
+  filter: drop-shadow(0 8px 24px rgba(232, 111, 152, 0.25));
+  max-width: min(260px, 85vw);
+  height: auto;
+}
+
+.cake-hint {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: -6px;
+}
+
+.cake-confetti {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.confetti-piece {
+  position: absolute;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.wish-btn {
+  font-size: 1rem;
+  padding: 14px 32px;
+  letter-spacing: 0.02em;
+}

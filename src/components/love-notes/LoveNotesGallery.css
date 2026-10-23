@@ -1,0 +1,187 @@
+/* LoveNotesGallery.css */
+
+.love-notes-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.love-hearts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+}
+
+@media (max-width: 320px) {
+  .love-hearts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.love-heart-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-lg);
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 90px;
+  justify-content: center;
+}
+
+.love-heart-btn:hover { background: rgba(255, 233, 239, 0.5); }
+.love-heart-btn:focus-visible {
+  outline: 2px solid var(--pink-bubble);
+  outline-offset: 2px;
+}
+
+.heart-shape {
+  width: 68px;
+  height: 68px;
+  background: linear-gradient(135deg, #FF8FB1, #E86F98);
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(232, 111, 152, 0.35);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.heart-shape::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  width: 68px; height: 68px;
+  background: inherit;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heart-shape::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0;
+  width: 68px; height: 68px;
+  background: inherit;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.love-heart-btn.opened .heart-shape {
+  background: linear-gradient(135deg, #F7B8CB, #FFD7C2);
+  box-shadow: 0 0 20px rgba(255, 143, 177, 0.50);
+}
+
+.love-heart-btn.secret .heart-shape {
+  background: linear-gradient(135deg, #E9DFFF, #D8C9F5);
+}
+
+.heart-emoji, .heart-lock {
+  position: relative;
+  z-index: 2;
+  font-size: 1.6rem;
+  transform: rotate(45deg);
+}
+
+.heart-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--pink-deep);
+  font-weight: 600;
+  text-align: center;
+  max-width: 80px;
+  line-height: 1.2;
+}
+
+.heart-hint {
+  font-family: var(--font-hand);
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+/* All opened message */
+.all-opened-msg {
+  text-align: center;
+  animation: bounceIn 0.5s var(--ease-bounce);
+}
+
+/* Note modal */
+.love-note-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(91, 58, 72, 0.30);
+  backdrop-filter: blur(6px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.love-note-modal {
+  background: rgba(255, 253, 249, 0.97);
+  border: 2px solid rgba(255, 197, 213, 0.45);
+  border-radius: var(--radius-xl);
+  padding: 32px 28px 28px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 16px 48px rgba(232, 111, 152, 0.25);
+}
+
+.love-note-modal-emoji {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.love-note-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.love-note-modal-msg {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.secret-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #E9DFFF, #D8C9F5);
+  color: var(--lilac-deep);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 8px;
+}
+
+.love-note-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: rgba(255, 233, 239, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

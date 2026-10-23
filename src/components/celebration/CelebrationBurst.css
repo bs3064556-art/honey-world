@@ -1,0 +1,46 @@
+.cele-burst {
+  position: fixed;
+  inset: 0;
+  z-index: 260;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cele-cracker {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  filter: drop-shadow(0 2px 4px rgba(80, 30, 40, 0.25));
+}
+
+.cele-balloon {
+  position: absolute;
+  bottom: 0;
+  width: 42px;
+  height: 52px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: inset -6px -8px 0 rgba(0, 0, 0, 0.06);
+}
+.cele-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  width: 1.5px;
+  height: 22px;
+  background: rgba(90, 50, 40, 0.35);
+}
+.cele-balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 7px solid inherit;
+  filter: brightness(0.9);
+}

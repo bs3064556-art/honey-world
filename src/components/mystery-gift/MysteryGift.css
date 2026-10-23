@@ -1,0 +1,70 @@
+/* MysteryGift.css */
+
+.mystery-gift-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  position: relative;
+}
+
+.gift-scene {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 220px;
+}
+
+.gift-box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 12px 30px rgba(232, 111, 152, 0.30));
+}
+
+.gift-open-btn {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  padding: 14px 32px;
+}
+
+.gift-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  background: rgba(255, 253, 249, 0.90);
+  border: 2px solid rgba(255, 197, 213, 0.40);
+  border-radius: var(--radius-xl);
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: var(--shadow-hover);
+}
+
+.gift-reveal-emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.gift-reveal-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--pink-deep);
+}
+
+.gift-reveal-msg {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.gift-reveal-decorations {
+  display: flex;
+  gap: 16px;
+  font-size: 1.5rem;
+  margin: 4px 0;
+}

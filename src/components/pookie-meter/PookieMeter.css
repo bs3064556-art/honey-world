@@ -1,0 +1,119 @@
+/* PookieMeter.css */
+
+.pookie-meter-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.pookie-character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.pookie-face {
+  filter: drop-shadow(0 4px 12px rgba(232, 111, 152, 0.25));
+}
+
+.pookie-expression {
+  font-size: 1.15rem;
+  color: var(--text-main);
+  text-align: center;
+  font-weight: 600;
+  min-height: 2em;
+}
+
+/* Slider */
+.pookie-slider-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pookie-slider-track {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 197, 213, 0.25);
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.pookie-slider-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FFD7C2, #FF8FB1, #E86F98);
+  border-radius: var(--radius-full);
+  transition: width 0.08s linear;
+}
+
+.pookie-slider.is-auto {
+  pointer-events: none;
+}
+
+.pookie-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  cursor: pointer;
+  margin-top: -9px;
+  position: relative;
+}
+
+.pookie-slider:focus-visible {
+  outline: 2px solid var(--pink-bubble);
+  outline-offset: 4px;
+}
+
+.pookie-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF8FB1, #E86F98);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(232, 111, 152, 0.5);
+  transition: transform 0.15s ease;
+  border: 3px solid white;
+}
+
+.pookie-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+.pookie-slider::-moz-range-thumb {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF8FB1, #E86F98);
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(232, 111, 152, 0.5);
+}
+
+.pookie-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0 4px;
+}
+
+/* Overload */
+.pookie-overload {
+  background: linear-gradient(135deg, rgba(255, 233, 239, 0.95), rgba(233, 223, 255, 0.90));
+  border: 2px solid rgba(255, 143, 177, 0.40);
+  border-radius: var(--radius-xl);
+  padding: 16px 24px;
+  text-align: center;
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.pookie-overload-text {
+  font-size: 1.3rem;
+  color: var(--pink-deep);
+  font-weight: 700;
+  line-height: 1.4;
+}

@@ -1,0 +1,314 @@
+.bday-video {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 8px 0 12px;
+}
+
+.bv-balloons {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 70px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bv-balloon {
+  position: absolute;
+  width: 26px;
+  height: 32px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: bvFloat 3.4s ease-in-out infinite;
+  opacity: 0.9;
+}
+.bv-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  width: 1px;
+  height: 14px;
+  background: rgba(90, 50, 40, 0.3);
+}
+
+@keyframes bvFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.bv-header {
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.bv-chip {
+  display: inline-block;
+  margin: 0 0 4px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 197, 213, 0.7), rgba(255, 240, 181, 0.7));
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #a8675a;
+}
+
+.bv-title {
+  font-family: 'Great Vibes', 'Dancing Script', cursive;
+  font-weight: 400;
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  color: #d9567f;
+  margin: 0;
+  line-height: 1.05;
+  text-shadow: 0 2px 12px rgba(217, 86, 127, 0.25);
+}
+
+.bv-sub {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
+  color: #8b5a4a;
+  margin: 4px 0 0;
+}
+
+/* ---------- framed stage (birthday template) ---------- */
+.bv-stage {
+  position: relative;
+  z-index: 1;
+  width: min(88vw, 380px);
+  padding: 14px 14px 48px;
+  border-radius: 8px;
+  background: #fffdf8;
+  box-shadow:
+    0 18px 42px rgba(100, 50, 40, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.bv-frame-polaroid {
+  background: #fffdf8;
+  transform: rotate(-0.8deg);
+  padding-bottom: 56px;
+}
+
+.bv-frame-gold {
+  background: linear-gradient(145deg, #fff8e8, #ffe9c4);
+  box-shadow:
+    0 18px 42px rgba(140, 90, 30, 0.3),
+    0 0 0 4px #d4a84b,
+    0 0 0 7px #fff3d0;
+  border-radius: 4px;
+}
+
+.bv-frame-film {
+  background: #1a1214;
+  padding: 18px 12px 52px;
+  border-radius: 4px;
+  box-shadow: 0 18px 42px rgba(20, 10, 15, 0.45);
+}
+.bv-frame-film::before,
+.bv-frame-film::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    #1a1214 0 8px,
+    #3a2820 8px 14px
+  );
+}
+.bv-frame-film::before { top: 4px; }
+.bv-frame-film::after { bottom: 36px; }
+.bv-frame-film .bv-caption { color: #ffd0dc; }
+.bv-frame-film .bv-counter { color: #ffc4d4; background: rgba(0,0,0,0.4); }
+
+.bv-frame-ribbon {
+  background: linear-gradient(180deg, #fff5f8, #ffe0ea);
+  box-shadow:
+    0 18px 42px rgba(200, 80, 110, 0.28),
+    inset 0 0 0 3px rgba(232, 111, 152, 0.35);
+  border-radius: 16px;
+}
+
+.bv-frame-heart {
+  background: radial-gradient(circle at 50% 20%, #fff8fc, #ffd6e4);
+  border-radius: 20px 20px 28px 28px;
+  box-shadow:
+    0 18px 42px rgba(220, 90, 120, 0.3),
+    0 0 0 3px rgba(255, 143, 177, 0.5);
+}
+
+.bv-ornament {
+  position: absolute;
+  font-size: 1.2rem;
+  z-index: 3;
+  filter: drop-shadow(0 2px 3px rgba(80, 40, 40, 0.2));
+}
+.bv-ornament-tl { top: 6px; left: 8px; }
+.bv-ornament-tr { top: 6px; right: 8px; }
+
+.bv-photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #2a1a18;
+}
+
+.bv-frame-ribbon .bv-photo-wrap,
+.bv-frame-heart .bv-photo-wrap {
+  border-radius: 12px;
+}
+
+.bv-frame-gold .bv-photo-wrap {
+  box-shadow: inset 0 0 0 2px rgba(180, 130, 50, 0.35);
+}
+
+.bv-photo {
+  position: absolute;
+  inset: 0;
+}
+
+.bv-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Ken Burns */
+.bv-photo.kb-in img {
+  animation: kbIn 2.8s ease-out forwards;
+}
+.bv-photo.kb-out img {
+  animation: kbOut 2.8s ease-out forwards;
+}
+
+@keyframes kbIn {
+  from { transform: scale(1) translate(0, 0); }
+  to   { transform: scale(1.12) translate(-2%, -1%); }
+}
+@keyframes kbOut {
+  from { transform: scale(1.1) translate(2%, 1%); }
+  to   { transform: scale(1) translate(0, 0); }
+}
+
+.bv-missing {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  background: #3a2820;
+}
+
+.bv-caption {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #8b3a4a;
+  min-height: 1.4em;
+}
+
+.bv-counter {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #9b5b4a;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.bv-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bv-spark {
+  position: absolute;
+  top: 20%;
+  font-size: 1rem;
+  animation: bvSpark 2.4s ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes bvSpark {
+  0% { opacity: 0; transform: translateY(40px) scale(0.5); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-80px) scale(1.1); }
+}
+
+.bv-progress {
+  width: min(88vw, 380px);
+  height: 5px;
+  border-radius: 5px;
+  background: rgba(150, 90, 80, 0.18);
+  overflow: hidden;
+}
+.bv-progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #ff9db9, #e86f98, #ffd06a);
+  transition: width 0.35s ease;
+  border-radius: 5px;
+}
+
+.bv-start {
+  margin-top: 4px;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.bv-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 1;
+}
+
+.bv-ctl {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(232, 111, 152, 0.4);
+  background: rgba(255, 253, 249, 0.95);
+  color: #d9567f;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(232, 111, 152, 0.2);
+}
+.bv-ctl-main {
+  width: 56px;
+  height: 56px;
+  border: 0;
+  background: linear-gradient(135deg, #ff9db9, #e86f98);
+  color: #fff;
+  font-size: 1.15rem;
+}
+
+.bv-song-note {
+  font-size: 1.05rem;
+  color: #9b5b4a;
+  margin: 0;
+  text-align: center;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bv-photo.kb-in img,
+  .bv-photo.kb-out img,
+  .bv-balloon,
+  .bv-spark { animation: none; }
+}

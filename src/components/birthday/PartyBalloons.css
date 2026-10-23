@@ -1,0 +1,59 @@
+.party-balloons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.pb-balloon {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 3;
+  -webkit-tap-highlight-color: transparent;
+  filter: drop-shadow(0 8px 12px rgba(90, 40, 50, 0.22));
+}
+
+.pb-balloon img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.pb-emoji {
+  display: block;
+  line-height: 1;
+  filter: drop-shadow(0 4px 6px rgba(90, 40, 50, 0.2));
+}
+
+.pb-string {
+  display: block;
+  width: 1.5px;
+  height: 28px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(120, 70, 60, 0.45), transparent);
+  border-radius: 2px;
+}
+
+.pb-burst {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 6;
+  transform: translate(-50%, 50%);
+}
+
+.pb-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 1.1rem;
+  transform: translate(-50%, -50%) rotate(var(--a)) translateY(-28px);
+}

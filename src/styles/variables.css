@@ -1,0 +1,83 @@
+/* ============================================================
+   HONEYVERSE — CSS Design Variables
+   ============================================================ */
+
+:root {
+  /* ── Backgrounds ── */
+  --bg-cream:      #FFF9F5;
+  --bg-ivory:      #FFFDF9;
+  --bg-blush:      #FFE9EF;
+
+  /* ── Primary Pinks ── */
+  --pink-bubble:   #FF8FB1;
+  --pink-soft:     #F7B8CB;
+  --pink-deep:     #E86F98;
+  --pink-baby:     #FFC5D5;
+  --pink-btn:      #F06292;
+
+  /* ── Lavenders ── */
+  --lavender:      #E9DFFF;
+  --lilac-soft:    #D8C9F5;
+  --lilac-deep:    #B39DDB;
+
+  /* ── Flower Colors ── */
+  --peach:         #FFD7C2;
+  --butter:        #FFF0B5;
+  --lilac:         #DCCBFF;
+
+  /* ── Greenery ── */
+  --sage:          #C9DDC1;
+  --leaf:          #AFC9A4;
+
+  /* ── Text ── */
+  --text-main:     #5B3A48;
+  --text-secondary:#8C6878;
+  --text-light:    #B8879A;
+  --text-white:    #FFFFFF;
+
+  /* ── Gradients ── */
+  --grad-main:     linear-gradient(135deg, #FFF9F5, #FFE9EF, #E9DFFF);
+  --grad-pink:     linear-gradient(135deg, #FFE9EF, #FFC5D5, #F7B8CB);
+  --grad-lavender: linear-gradient(135deg, #E9DFFF, #D8C9F5, #FFC5D5);
+  --grad-hero:     linear-gradient(160deg, #FFF9F5 0%, #FFE9EF 40%, #E9DFFF 100%);
+
+  /* ── Shadows ── */
+  --shadow-soft:   0 4px 20px rgba(232, 111, 152, 0.12);
+  --shadow-card:   0 8px 32px rgba(91, 58, 72, 0.10);
+  --shadow-hover:  0 12px 40px rgba(232, 111, 152, 0.20);
+  --shadow-glow:   0 0 24px rgba(247, 184, 203, 0.60);
+
+  /* ── Border Radius ── */
+  --radius-sm:     8px;
+  --radius-md:     16px;
+  --radius-lg:     24px;
+  --radius-xl:     36px;
+  --radius-full:   9999px;
+
+  /* ── Spacing ── */
+  --space-xs:      4px;
+  --space-sm:      8px;
+  --space-md:      16px;
+  --space-lg:      24px;
+  --space-xl:      40px;
+  --space-2xl:     64px;
+
+  /* ── Typography ── */
+  --font-display:  'Playfair Display', Georgia, serif;
+  --font-body:     'Poppins', system-ui, sans-serif;
+  --font-hand:     'Caveat', cursive;
+
+  /* ── Transitions ── */
+  --ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ── Z-index Layers ── */
+  --z-bg:          0;
+  --z-content:     10;
+  --z-overlay:     100;
+  --z-curtain:     200;
+  --z-modal:       300;
+  --z-toast:       400;
+  --z-effects:     500;
+}

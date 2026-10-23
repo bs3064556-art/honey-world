@@ -1,0 +1,49 @@
+/* ============================================================
+   HONEYVERSE — Responsive Media Queries
+   ============================================================ */
+
+/* ── Mobile first: 320px base ── */
+
+/* Small phones: 375px+ */
+@media (min-width: 375px) {
+  .page-content { padding: 0 4px; }
+}
+
+/* Medium phones: 430px+ */
+@media (min-width: 430px) {
+  .page { padding: var(--space-xl) var(--space-lg); }
+}
+
+/* Tablets: 640px+ */
+@media (min-width: 640px) {
+  .page-content { max-width: 560px; }
+  .section-heading { font-size: 2.4rem; }
+  .section-subheading { font-size: 1.1rem; }
+  .card { padding: var(--space-xl); }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+  .page-content { max-width: 640px; }
+  .page { padding: var(--space-2xl); }
+}
+
+/* Large desktop: 1440px+ */
+@media (min-width: 1440px) {
+  .page-content { max-width: 720px; }
+}
+
+/* ── Touch target helper ── */
+@media (pointer: coarse) {
+  .btn { min-height: 52px; min-width: 52px; }
+}
+
+/* ── Landscape phones ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .page {
+    padding: var(--space-sm) var(--space-lg);
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+  .section-heading { font-size: 1.4rem; }
+}

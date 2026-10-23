@@ -1,0 +1,71 @@
+.hb-banner {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 4px;
+  padding-top: 6px;
+  text-align: center;
+  z-index: 4;
+}
+
+.hb-string {
+  position: absolute;
+  top: 22px;
+  left: 4%;
+  right: 4%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #c9a227 8%, #e8c547 50%, #c9a227 92%, transparent);
+  box-shadow: 0 2px 4px rgba(120, 80, 20, 0.25);
+}
+
+.hb-flags {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6%;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.hb-flag {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 34px;
+  margin-top: 14px;
+  font-size: 0.95rem;
+  background: linear-gradient(160deg, #fff6ec, #ffd6e4);
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 50% 100%, 0 72%);
+  box-shadow: 0 4px 8px rgba(180, 60, 90, 0.2);
+  transform-origin: top center;
+}
+
+.hb-banner-text {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 28px 12px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ff6b9d 0%, #e86f98 45%, #d9567f 100%);
+  box-shadow:
+    0 10px 28px rgba(217, 86, 127, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.45);
+}
+
+.hb-banner-main {
+  font-family: 'Great Vibes', 'Dancing Script', cursive;
+  font-size: clamp(1.85rem, 8vw, 2.4rem);
+  line-height: 1.05;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(80, 20, 40, 0.35);
+}
+
+.hb-banner-name {
+  font-family: 'Dancing Script', 'Caveat', cursive;
+  font-size: clamp(1.15rem, 4.5vw, 1.4rem);
+  font-weight: 700;
+  color: #fff8ec;
+  letter-spacing: 0.04em;
+}

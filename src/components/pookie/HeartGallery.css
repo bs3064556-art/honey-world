@@ -1,0 +1,258 @@
+/* ── Heart grid ─────────────────────────────────────────── */
+.heart-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+  padding: 4px;
+}
+
+@media (max-width: 340px) {
+  .heart-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.heart-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 108px;
+  padding: 18px 8px 16px;
+  border: 0;
+  border-radius: 22px;
+  background: rgba(255, 252, 248, 0.82);
+  box-shadow: 0 8px 22px rgba(232, 111, 152, 0.16);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  overflow: visible;
+}
+
+.heart-btn.opened {
+  background: linear-gradient(160deg, rgba(255, 230, 238, 0.95), rgba(255, 248, 244, 0.9));
+  box-shadow: 0 6px 18px rgba(232, 111, 152, 0.22);
+}
+
+.heart-btn.cracking .heart-svg {
+  animation: heartCrack 0.5s ease-out forwards;
+}
+
+@keyframes heartCrack {
+  0% { transform: scale(1) rotate(0); }
+  35% { transform: scale(1.18) rotate(-6deg); filter: brightness(1.2); }
+  70% { transform: scale(0.85) rotate(4deg); }
+  100% { transform: scale(0.92) rotate(0); opacity: 0.85; }
+}
+
+.heart-stack {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 58px;
+  z-index: 1;
+}
+
+.heart-pulse {
+  position: absolute;
+  inset: 18% 22%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 143, 177, 0.35), transparent 70%);
+  animation: heartGlow 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.heart-btn.opened .heart-pulse {
+  animation: none;
+  opacity: 0.4;
+}
+
+@keyframes heartGlow {
+  0%, 100% { transform: scale(0.85); opacity: 0.55; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.heart-svg {
+  width: 52px;
+  height: 48px;
+  filter: drop-shadow(0 6px 10px rgba(200, 60, 100, 0.35));
+  animation: heartBeat 1.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+.heart-btn.opened .heart-svg {
+  animation: none;
+  transform: scale(0.92);
+  filter: drop-shadow(0 4px 8px rgba(200, 60, 100, 0.25));
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.12); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.08); }
+  56% { transform: scale(1); }
+}
+
+.heart-hammer {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  font-size: 1.35rem;
+  line-height: 1;
+  transform-origin: 70% 80%;
+  filter: drop-shadow(0 3px 4px rgba(60, 30, 20, 0.35));
+  z-index: 2;
+  animation: hammerIdle 2.2s ease-in-out infinite;
+}
+
+.heart-hammer.swing {
+  animation: hammerHit 0.5s ease-out forwards;
+}
+
+@keyframes hammerIdle {
+  0%, 100% { transform: rotate(-18deg) translateY(0); }
+  50% { transform: rotate(-8deg) translateY(-2px); }
+}
+
+@keyframes hammerHit {
+  0% { transform: rotate(-28deg) scale(1); }
+  40% { transform: rotate(28deg) scale(1.15); }
+  70% { transform: rotate(12deg) scale(1.05); }
+  100% { transform: rotate(-10deg) scale(1); }
+}
+
+.heart-check {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 0.75rem;
+  color: #d9567f;
+  opacity: 0.85;
+}
+
+/* ── Reveal overlay ─────────────────────────────────────── */
+.hs-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(60, 20, 35, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+.hs-card {
+  position: relative;
+  width: min(92vw, 360px);
+  padding: 22px 18px 20px;
+  border-radius: 28px;
+  background: linear-gradient(165deg, #fffaf5 0%, #ffe8f0 55%, #ffd6e4 100%);
+  box-shadow: 0 24px 60px rgba(80, 20, 40, 0.35);
+  text-align: center;
+}
+
+.hs-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  color: #9b5b4a;
+  font-size: 0.9rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.hs-stage {
+  position: relative;
+  height: 220px;
+  margin: 8px 0 14px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.7), rgba(255, 214, 228, 0.35));
+}
+
+.hs-msg {
+  margin: 0;
+  padding: 0 8px;
+  font-family: 'Dancing Script', 'Caveat', cursive;
+  font-size: clamp(1.15rem, 4.5vw, 1.35rem);
+  line-height: 1.4;
+  color: #6b3f33;
+  font-weight: 600;
+}
+
+/* ── Burst scenes (no anime) ────────────────────────────── */
+.hs-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.hs-burst {
+  overflow: visible;
+}
+
+.hs-center-emoji {
+  position: relative;
+  z-index: 2;
+  font-size: 3.2rem;
+  line-height: 1;
+  filter: drop-shadow(0 6px 12px rgba(90, 40, 50, 0.25));
+}
+
+.hs-blast-core {
+  position: relative;
+  z-index: 2;
+  font-size: 3.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 18px rgba(255, 180, 80, 0.55));
+}
+
+.hs-fly {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  pointer-events: none;
+  line-height: 1;
+  filter: drop-shadow(0 3px 4px rgba(60, 30, 40, 0.18));
+}
+
+.hs-rose {
+  position: absolute;
+  width: 54px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(90, 40, 50, 0.2));
+  z-index: 1;
+}
+
+.hs-rose-soft {
+  opacity: 0.9;
+}
+
+.hs-rose-1 { left: 18%; top: 28%; width: 48px; }
+.hs-rose-2 { left: 32%; top: 16%; width: 58px; z-index: 2; }
+.hs-rose-3 { left: 46%; top: 22%; width: 52px; }
+.hs-rose-4 { left: 58%; top: 14%; width: 60px; z-index: 2; }
+.hs-rose-5 { left: 28%; top: 42%; width: 50px; }
+.hs-rose-6 { left: 52%; top: 40%; width: 56px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .heart-svg,
+  .heart-pulse {
+    animation: none;
+  }
+}
